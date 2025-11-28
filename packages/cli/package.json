@@ -1,6 +1,6 @@
 {
   "name": "@vercel-env-router/cli",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "CLI tool for generating branch-specific vercel.json configurations",
   "keywords": [
     "vercel",
