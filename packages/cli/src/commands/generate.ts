@@ -67,9 +67,11 @@ export async function generateCommand(options: GenerateOptions = {}): Promise<vo
     // Show sample rewrite
     if (vercelConfig.rewrites && vercelConfig.rewrites.length > 0) {
       const firstRewrite = vercelConfig.rewrites[0]
-      logger.section('Sample Rewrite')
-      logger.keyValue('Source', firstRewrite.source)
-      logger.keyValue('Destination', firstRewrite.destination)
+      if (firstRewrite) {
+        logger.section('Sample Rewrite')
+        logger.keyValue('Source', firstRewrite.source)
+        logger.keyValue('Destination', firstRewrite.destination)
+      }
     }
   } catch (error) {
     handleError(error)

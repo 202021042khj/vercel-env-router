@@ -19,7 +19,7 @@
   "author": "202021042khj",
   "type": "module",
   "scripts": {
-    "build": "pnpm -r build",
+    "build": "pnpm --filter \"@vercel-env-router/*\" build",
     "test": "vitest",
     "test:coverage": "vitest --coverage",
     "lint": "eslint . --ext .ts,.tsx",
