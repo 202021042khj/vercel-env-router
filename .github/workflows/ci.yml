@@ -75,6 +75,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Build packages first
+        run: pnpm --filter "@vercel-env-router/*" build
+
       - name: Type check
         run: pnpm typecheck
 
@@ -150,8 +153,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build packages
-        run: pnpm build
+      - name: Build packages only
+        run: pnpm --filter "@vercel-env-router/*" build
 
       - name: Check build artifacts
         run: |
