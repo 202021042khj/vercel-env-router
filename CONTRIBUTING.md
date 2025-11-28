@@ -7,6 +7,7 @@ Thank you for your interest in contributing! This document provides guidelines f
 See [SETUP.md](./SETUP.md) for detailed setup instructions.
 
 Quick start:
+
 ```bash
 pnpm install
 pnpm build
@@ -16,11 +17,13 @@ pnpm test
 ## Code Style
 
 We use:
+
 - **TypeScript** for type safety
 - **ESLint** for linting
 - **Prettier** for formatting
 
 Run before committing:
+
 ```bash
 pnpm lint:fix
 pnpm format
@@ -36,6 +39,7 @@ pnpm typecheck
 - Aim for 80%+ code coverage
 
 Example:
+
 ```typescript
 import { describe, it, expect } from 'vitest'
 import { generateVercelConfig } from '../src/generator'
@@ -67,12 +71,14 @@ pnpm test generator.test.ts
 ## Pull Request Process
 
 1. **Fork and Clone**
+
    ```bash
    git clone https://github.com/yourusername/vercel-env-router.git
    cd vercel-env-router
    ```
 
 2. **Create Branch**
+
    ```bash
    git checkout -b feature/your-feature-name
    ```
@@ -83,6 +89,7 @@ pnpm test generator.test.ts
    - Update documentation
 
 4. **Verify**
+
    ```bash
    pnpm lint
    pnpm typecheck
@@ -91,6 +98,7 @@ pnpm test generator.test.ts
    ```
 
 5. **Commit**
+
    ```bash
    git add .
    git commit -m "feat: add your feature"
@@ -114,6 +122,7 @@ pnpm test generator.test.ts
 ### Core Package (`packages/core`)
 
 The core library containing:
+
 - Type definitions
 - Configuration validation (Zod schemas)
 - vercel.json generation logic
@@ -121,6 +130,7 @@ The core library containing:
 ### CLI Package (`packages/cli`)
 
 Command-line interface:
+
 - `init` - Create config file
 - `generate` - Generate vercel.json
 - `validate` - Validate config
@@ -159,6 +169,7 @@ Vite integration for automatic generation.
 - **docs/troubleshooting.md** - Common issues
 
 Update documentation when:
+
 - Adding new features
 - Changing existing behavior
 - Fixing bugs that affect usage
@@ -166,6 +177,7 @@ Update documentation when:
 ## Code Review
 
 PRs require:
+
 - ✅ All tests passing
 - ✅ No linting errors
 - ✅ Type checking passes

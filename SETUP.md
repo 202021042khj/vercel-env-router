@@ -35,6 +35,7 @@ pnpm build
 ```
 
 This will build:
+
 - `@vercel-env-router/core`
 - `@vercel-env-router/cli`
 - `@vercel-env-router/vite`
@@ -153,12 +154,14 @@ vercel-env-router/
 ### Add New Dependency
 
 For core package:
+
 ```bash
 cd packages/core
 pnpm add zod
 ```
 
 For dev dependency:
+
 ```bash
 pnpm add -D vitest
 ```

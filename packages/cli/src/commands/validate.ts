@@ -37,7 +37,6 @@ export async function validateCommand(options: ValidateOptions = {}): Promise<vo
     }
 
     logger.success('\nAll checks passed!')
-
   } catch (error) {
     handleError(error)
   }

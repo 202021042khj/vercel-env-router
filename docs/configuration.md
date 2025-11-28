@@ -8,10 +8,18 @@ Complete reference for `vercel-env-router.config.ts`.
 import { defineConfig } from '@vercel-env-router/core'
 
 export default defineConfig({
-  environments: { /* ... */ },
-  rewrites: [ /* ... */ ],
-  headers: [ /* ... */ ],
-  redirects: [ /* ... */ ],
+  environments: {
+    /* ... */
+  },
+  rewrites: [
+    /* ... */
+  ],
+  headers: [
+    /* ... */
+  ],
+  redirects: [
+    /* ... */
+  ],
 })
 ```
 
@@ -69,9 +77,7 @@ Optional. Environment-specific headers.
 customHeaders: [
   {
     source: '/api/(.*)',
-    headers: [
-      { key: 'X-Environment', value: 'production' },
-    ],
+    headers: [{ key: 'X-Environment', value: 'production' }],
   },
 ]
 ```
@@ -97,9 +103,7 @@ Optional. Global headers applied to all environments.
 headers: [
   {
     source: '/assets/(.*)',
-    headers: [
-      { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
-    ],
+    headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
   },
 ]
 ```
@@ -160,9 +164,7 @@ export default defineConfig({
       customHeaders: [
         {
           source: '/api/(.*)',
-          headers: [
-            { key: 'X-Environment', value: 'staging' },
-          ],
+          headers: [{ key: 'X-Environment', value: 'staging' }],
         },
       ],
     },
@@ -180,15 +182,11 @@ export default defineConfig({
   headers: [
     {
       source: '/assets/(.*)',
-      headers: [
-        { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
-      ],
+      headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
     },
     {
       source: '/(.*).html',
-      headers: [
-        { key: 'Cache-Control', value: 'public, max-age=0, must-revalidate' },
-      ],
+      headers: [{ key: 'Cache-Control', value: 'public, max-age=0, must-revalidate' }],
     },
   ],
 })
@@ -214,7 +212,7 @@ defineConfig({
   environments: {
     prod: {
       branch: 'main',
-      apiUrl: 'not-a-url',  // Type error!
+      apiUrl: 'not-a-url', // Type error!
     },
   },
 })
@@ -239,7 +237,7 @@ export default defineConfig({
   environments: {
     production: {
       branch: 'main',
-      apiUrl: process.env.PROD_API_URL!,  // From Vercel env vars
+      apiUrl: process.env.PROD_API_URL!, // From Vercel env vars
     },
   },
 })

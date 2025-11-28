@@ -1,9 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import {
-  validateConfig,
-  validateUniqueBranches,
-  ValidationError,
-} from '../src/validator.js'
+import { validateConfig, validateUniqueBranches, ValidationError } from '../src/validator.js'
 import type { RouterConfig } from '../src/types.js'
 
 describe('validateConfig', () => {

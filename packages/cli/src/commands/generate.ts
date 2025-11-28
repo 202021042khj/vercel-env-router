@@ -1,10 +1,6 @@
 import { writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
-import {
-  generateVercelConfig,
-  getEnvironmentInfo,
-  validate,
-} from '@vercel-env-router/core'
+import { generateVercelConfig, getEnvironmentInfo, validate } from '@vercel-env-router/core'
 import { logger } from '../utils/logger.js'
 import { handleError } from '../utils/errors.js'
 import { loadConfig } from '../utils/config-loader.js'
@@ -75,7 +71,6 @@ export async function generateCommand(options: GenerateOptions = {}): Promise<vo
       logger.keyValue('Source', firstRewrite.source)
       logger.keyValue('Destination', firstRewrite.destination)
     }
-
   } catch (error) {
     handleError(error)
   }

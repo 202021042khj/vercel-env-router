@@ -50,8 +50,7 @@ export function validateUniqueBranches(config: RouterConfig): void {
     branchMap.set(envConfig.branch, existing)
   }
 
-  const duplicates = Array.from(branchMap.entries())
-    .filter(([, envs]) => envs.length > 1)
+  const duplicates = Array.from(branchMap.entries()).filter(([, envs]) => envs.length > 1)
 
   if (duplicates.length > 0) {
     const duplicateMessages = duplicates
@@ -113,11 +112,7 @@ export function validate(
     env?: Record<string, string | undefined>
   } = {}
 ): RouterConfig {
-  const {
-    checkBranches = true,
-    checkEnvVars = false,
-    env = process.env,
-  } = options
+  const { checkBranches = true, checkEnvVars = false, env = process.env } = options
 
   // Schema validation
   const validatedConfig = validateConfig(config)

@@ -1,9 +1,4 @@
-import type {
-  RouterConfig,
-  VercelConfig,
-  GenerateOptions,
-  EnvironmentConfig,
-} from './types.js'
+import type { RouterConfig, VercelConfig, GenerateOptions, EnvironmentConfig } from './types.js'
 
 /**
  * Find environment configuration by branch name
@@ -49,7 +44,7 @@ export function generateVercelConfig(
       .join(', ')
     throw new Error(
       `No environment configuration found for branch: "${branch}"\n` +
-      `Available branches: ${availableBranches}`
+        `Available branches: ${availableBranches}`
     )
   }
 
@@ -74,10 +69,7 @@ export function generateVercelConfig(
   }
 
   // Headers
-  const headers = [
-    ...(environment.customHeaders || []),
-    ...(config.headers || []),
-  ]
+  const headers = [...(environment.customHeaders || []), ...(config.headers || [])]
 
   if (headers.length > 0) {
     vercelConfig.headers = headers
@@ -108,10 +100,7 @@ export function getEnvironmentInfo(
     process.env.VERCEL_GIT_COMMIT_REF ||
     'unknown'
 
-  const vercelEnv =
-    options.env?.VERCEL_ENV ||
-    process.env.VERCEL_ENV ||
-    'development'
+  const vercelEnv = options.env?.VERCEL_ENV || process.env.VERCEL_ENV || 'development'
 
   const environment = findEnvironmentByBranch(config.environments, branch)
 

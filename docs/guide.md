@@ -51,15 +51,15 @@ import { defineConfig } from '@vercel-env-router/core'
 export default defineConfig({
   environments: {
     production: {
-      branch: 'main',  // Your production branch
+      branch: 'main', // Your production branch
       apiUrl: process.env.PROD_API_URL || 'https://api.yourcompany.com',
     },
     staging: {
-      branch: 'staging',  // Your staging branch
+      branch: 'staging', // Your staging branch
       apiUrl: process.env.STAGING_API_URL || 'https://api-staging.yourcompany.com',
     },
     development: {
-      branch: 'dev',  // Your development branch
+      branch: 'dev', // Your development branch
       apiUrl: process.env.DEV_API_URL || 'http://localhost:8080',
     },
   },

@@ -28,10 +28,7 @@ const vercelConfig = {
   ],
 }
 
-fs.writeFileSync(
-  path.join(__dirname, '..', 'vercel.json'),
-  JSON.stringify(vercelConfig, null, 2)
-)
+fs.writeFileSync(path.join(__dirname, '..', 'vercel.json'), JSON.stringify(vercelConfig, null, 2))
 ```
 
 #### Before: `package.json`
@@ -164,14 +161,14 @@ Update configuration in one place, not scattered across build scripts.
 
 ## Comparison
 
-| Feature | Manual Script | vercel-env-router |
-|---------|--------------|-------------------|
-| Type Safety | ❌ No | ✅ TypeScript |
-| Validation | ❌ No | ✅ Zod Runtime |
-| Error Messages | ❌ Poor | ✅ Descriptive |
-| Reusability | ❌ Copy-paste | ✅ NPM Package |
-| Testing | ❌ Hard | ✅ Easy |
-| Maintenance | ❌ Per-project | ✅ Centralized |
+| Feature        | Manual Script  | vercel-env-router |
+| -------------- | -------------- | ----------------- |
+| Type Safety    | ❌ No          | ✅ TypeScript     |
+| Validation     | ❌ No          | ✅ Zod Runtime    |
+| Error Messages | ❌ Poor        | ✅ Descriptive    |
+| Reusability    | ❌ Copy-paste  | ✅ NPM Package    |
+| Testing        | ❌ Hard        | ✅ Easy           |
+| Maintenance    | ❌ Per-project | ✅ Centralized    |
 
 ## Real-World Example
 

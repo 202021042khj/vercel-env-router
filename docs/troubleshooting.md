@@ -7,6 +7,7 @@ Common issues and solutions.
 ### "No environment configuration found for branch"
 
 **Error:**
+
 ```
 ✖ No environment configuration found for branch: "feature/new-feature"
    Available branches: main, staging, dev
@@ -17,6 +18,7 @@ Common issues and solutions.
 **Solution:**
 
 1. Add a new environment for this branch:
+
 ```typescript
 environments: {
   feature: {
@@ -27,6 +29,7 @@ environments: {
 ```
 
 2. Or use a development environment for all feature branches by checking branch in apiUrl:
+
 ```typescript
 development: {
   branch: 'dev',
@@ -39,6 +42,7 @@ Then set `DEV_API_URL` for all preview deployments.
 ### "Configuration validation failed"
 
 **Error:**
+
 ```
 ✖ Configuration validation failed:
   - environments.production.apiUrl: Expected URL
@@ -47,6 +51,7 @@ Then set `DEV_API_URL` for all preview deployments.
 **Cause:** Invalid URL format in configuration.
 
 **Solution:** Ensure all `apiUrl` values are valid URLs:
+
 ```typescript
 // ❌ Wrong
 apiUrl: 'localhost:3000'
@@ -58,6 +63,7 @@ apiUrl: 'http://localhost:3000'
 ### "Duplicate branches found"
 
 **Error:**
+
 ```
 ✖ Duplicate branches found across environments:
   - Branch "main" used in: production, duplicate
@@ -66,6 +72,7 @@ apiUrl: 'http://localhost:3000'
 **Cause:** Same branch used in multiple environments.
 
 **Solution:** Each branch should map to only one environment:
+
 ```typescript
 // ❌ Wrong
 environments: {
@@ -85,6 +92,7 @@ environments: {
 ### "Config file not found"
 
 **Error:**
+
 ```
 ✖ No config file found. Run "vercel-env-router init" to create one.
 ```
@@ -92,6 +100,7 @@ environments: {
 **Cause:** Missing configuration file.
 
 **Solution:**
+
 ```bash
 npx vercel-env-router init
 ```
@@ -99,6 +108,7 @@ npx vercel-env-router init
 ### "Failed to load config"
 
 **Error:**
+
 ```
 ✖ Failed to load config from vercel-env-router.config.ts
 ```
@@ -108,6 +118,7 @@ npx vercel-env-router init
 **Solution:**
 
 1. Ensure config file exports default:
+
 ```typescript
 // ❌ Wrong
 export const config = defineConfig({ ... })
@@ -127,11 +138,13 @@ export default defineConfig({ ... })
 **Solution:**
 
 1. Check build logs for generation message:
+
 ```
 [vercel-env-router] Generated: vercel.json
 ```
 
 2. Verify rewrites in generated vercel.json:
+
 ```json
 {
   "rewrites": [
@@ -144,6 +157,7 @@ export default defineConfig({ ... })
 ```
 
 3. Ensure your API calls use `/api/*` path:
+
 ```typescript
 // ✅ Correct
 fetch('/api/users')
@@ -161,6 +175,7 @@ fetch('https://api.example.com/api/users')
 1. Go to Vercel Dashboard → Settings → Environment Variables
 
 2. Set variables for each environment:
+
 ```
 PROD_API_URL=https://api.prod.example.com (Production)
 STAGING_API_URL=https://api.staging.example.com (Preview, Branch: staging)
@@ -176,6 +191,7 @@ DEV_API_URL=https://api.dev.example.com (Preview, Branch: dev)
 **Solution:**
 
 1. Check build logs:
+
 ```
 [vercel-env-router] Environment:
   Branch: main
@@ -193,18 +209,20 @@ DEV_API_URL=https://api.dev.example.com (Preview, Branch: dev)
 **Solution:**
 
 1. Ensure plugin is in plugins array:
+
 ```typescript
 import { vercelEnvRouter } from '@vercel-env-router/vite'
 
 export default {
   plugins: [
-    vercelEnvRouter(),  // Add this
+    vercelEnvRouter(), // Add this
     react(),
   ],
 }
 ```
 
 2. Enable verbose logging:
+
 ```typescript
 vercelEnvRouter({ verbose: true })
 ```
@@ -216,11 +234,13 @@ vercelEnvRouter({ verbose: true })
 **Solution:**
 
 1. Import `defineConfig`:
+
 ```typescript
 import { defineConfig } from '@vercel-env-router/core'
 ```
 
 2. Use defineConfig wrapper:
+
 ```typescript
 export default defineConfig({
   // Auto-completion works here
@@ -232,6 +252,7 @@ export default defineConfig({
 If you're still experiencing issues:
 
 1. Enable debug mode:
+
 ```bash
 DEBUG=1 vercel-env-router generate
 ```

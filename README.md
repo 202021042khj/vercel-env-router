@@ -127,6 +127,7 @@ vercel-env-router generate
 ```
 
 Options:
+
 - `-c, --config <path>` - Path to config file
 - `-o, --output <path>` - Output path for vercel.json
 - `-b, --branch <name>` - Override branch name
@@ -141,6 +142,7 @@ vercel-env-router validate
 ```
 
 Options:
+
 - `-c, --config <path>` - Path to config file
 - `--check-env-vars` - Check environment variable availability
 
@@ -215,9 +217,7 @@ export default defineConfig({
   headers: [
     {
       source: '/assets/(.*)',
-      headers: [
-        { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
-      ],
+      headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
     },
   ],
 })
@@ -293,6 +293,7 @@ fs.writeFileSync('vercel.json', JSON.stringify(config))
 ```
 
 Problems:
+
 - ❌ No type safety
 - ❌ No validation
 - ❌ Copy-paste across projects
@@ -312,6 +313,7 @@ export default defineConfig({
 ```
 
 Benefits:
+
 - ✅ Full TypeScript support
 - ✅ Runtime validation with Zod
 - ✅ Reusable NPM package
@@ -339,6 +341,7 @@ This project follows the **GitHub Flow** branching model:
 - `feature/*`, `fix/*`, `chore/*`: Short-lived branches for specific changes
 
 **Workflow**:
+
 1. Create a feature branch from `main`
 2. Make changes and commit
 3. Create a changeset: `pnpm changeset`

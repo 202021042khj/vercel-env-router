@@ -2,7 +2,12 @@
   "name": "@vercel-env-router/core",
   "version": "0.1.0",
   "description": "Core library for generating branch-specific vercel.json configurations",
-  "keywords": ["vercel", "environment", "config", "deployment"],
+  "keywords": [
+    "vercel",
+    "environment",
+    "config",
+    "deployment"
+  ],
   "license": "MIT",
   "type": "module",
   "publishConfig": {
@@ -22,7 +27,9 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",

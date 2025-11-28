@@ -5,16 +5,19 @@ This example demonstrates the basic usage of `vercel-env-router`.
 ## Setup
 
 1. Install dependencies:
+
 ```bash
 pnpm install
 ```
 
 2. Generate `vercel.json`:
+
 ```bash
 pnpm vercel-env-router generate
 ```
 
 3. Run development server:
+
 ```bash
 pnpm dev
 ```
@@ -52,7 +55,7 @@ The Vite plugin automatically generates `vercel.json` during development:
 import { vercelEnvRouter } from '@vercel-env-router/vite'
 
 export default {
-  plugins: [vercelEnvRouter()]
+  plugins: [vercelEnvRouter()],
 }
 ```
 

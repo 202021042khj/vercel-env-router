@@ -1,5 +1,9 @@
 import { describe, it, expect } from 'vitest'
-import { generateVercelConfig, findEnvironmentByBranch, getEnvironmentInfo } from '../src/generator.js'
+import {
+  generateVercelConfig,
+  findEnvironmentByBranch,
+  getEnvironmentInfo,
+} from '../src/generator.js'
 import type { RouterConfig } from '../src/types.js'
 
 const testConfig: RouterConfig = {

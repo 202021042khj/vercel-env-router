@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vercel-env-router generate && vite build",
+    "build": "pnpm exec vercel-env-router generate && vite build",
     "preview": "vite preview"
   },
   "dependencies": {

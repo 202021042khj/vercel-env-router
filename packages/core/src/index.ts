@@ -16,4 +16,10 @@ export { defineConfig, RouterConfigSchema, EnvironmentConfigSchema } from './con
 export { generateVercelConfig, findEnvironmentByBranch, getEnvironmentInfo } from './generator.js'
 
 // Validator
-export { validate, validateConfig, validateUniqueBranches, validateEnvironmentVariables, ValidationError } from './validator.js'
+export {
+  validate,
+  validateConfig,
+  validateUniqueBranches,
+  validateEnvironmentVariables,
+  ValidationError,
+} from './validator.js'

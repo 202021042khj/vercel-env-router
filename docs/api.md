@@ -22,6 +22,7 @@ const config = defineConfig({
 ```
 
 **Parameters:**
+
 - `config: RouterConfig` - Configuration object
 
 **Returns:** `RouterConfig` - Validated configuration
@@ -40,6 +41,7 @@ const vercelConfig = generateVercelConfig(config, {
 ```
 
 **Parameters:**
+
 - `config: RouterConfig` - Router configuration
 - `options: GenerateOptions` - Generation options
   - `branch?: string` - Override branch name
@@ -63,6 +65,7 @@ const validConfig = validate(config, {
 ```
 
 **Parameters:**
+
 - `config: unknown` - Configuration to validate
 - `options` - Validation options
   - `checkBranches?: boolean` - Check branch uniqueness (default: true)
@@ -120,6 +123,7 @@ vercel-env-router init [options]
 ```
 
 **Options:**
+
 - `-f, --force` - Overwrite existing file
 
 #### `generate`
@@ -131,6 +135,7 @@ vercel-env-router generate [options]
 ```
 
 **Options:**
+
 - `-c, --config <path>` - Config file path
 - `-o, --output <path>` - Output path (default: vercel.json)
 - `-b, --branch <name>` - Override branch
@@ -145,6 +150,7 @@ vercel-env-router validate [options]
 ```
 
 **Options:**
+
 - `-c, --config <path>` - Config file path
 - `--no-check-branches` - Skip branch uniqueness check
 - `--check-env-vars` - Check environment variables
@@ -170,6 +176,7 @@ export default {
 ```
 
 **Options:**
+
 - `configPath?: string` - Config file path (default: auto-detect)
 - `outputPath?: string` - Output path (default: 'vercel.json')
 - `branch?: string` - Override branch name

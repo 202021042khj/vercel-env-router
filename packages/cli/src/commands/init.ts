@@ -60,7 +60,6 @@ export async function initCommand(options: InitOptions = {}): Promise<void> {
     logger.keyValue('   STAGING_API_URL', 'Your staging API URL')
     logger.keyValue('   DEV_API_URL', 'Your development API URL')
     logger.info('3. Run: vercel-env-router generate')
-
   } catch (error) {
     handleError(error)
   }

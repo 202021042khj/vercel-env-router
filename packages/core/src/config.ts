@@ -45,12 +45,11 @@ export const EnvironmentConfigSchema = z.object({
  * Zod schema for router configuration
  */
 export const RouterConfigSchema = z.object({
-  environments: z.record(z.string(), EnvironmentConfigSchema).refine(
-    (envs) => Object.keys(envs).length > 0,
-    {
+  environments: z
+    .record(z.string(), EnvironmentConfigSchema)
+    .refine((envs) => Object.keys(envs).length > 0, {
       message: 'At least one environment must be defined',
-    }
-  ),
+    }),
   rewrites: z.array(VercelRewriteSchema).optional(),
   headers: z.array(VercelHeaderSchema).optional(),
   redirects: z.array(VercelRedirectSchema).optional(),

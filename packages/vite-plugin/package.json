@@ -2,7 +2,12 @@
   "name": "@vercel-env-router/vite",
   "version": "0.1.0",
   "description": "Vite plugin for automatic vercel.json generation",
-  "keywords": ["vite", "plugin", "vercel", "environment"],
+  "keywords": [
+    "vite",
+    "plugin",
+    "vercel",
+    "environment"
+  ],
   "license": "MIT",
   "type": "module",
   "publishConfig": {
@@ -22,7 +27,9 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
