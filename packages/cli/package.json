@@ -1,0 +1,43 @@
+{
+  "name": "@vercel-env-router/cli",
+  "version": "0.1.0",
+  "description": "CLI tool for generating branch-specific vercel.json configurations",
+  "keywords": ["vercel", "cli", "deployment", "environment"],
+  "license": "MIT",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/202021042khj/vercel-env-router.git",
+    "directory": "packages/cli"
+  },
+  "bin": {
+    "vercel-env-router": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@vercel-env-router/core": "workspace:*",
+    "commander": "^11.1.0",
+    "picocolors": "^1.0.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,108 @@
+name: NPM Token Expiry Check
+
+on:
+  schedule:
+    # 매주 월요일 오전 9시 (UTC 0시)
+    - cron: '0 0 * * 1'
+  workflow_dispatch: # 수동 실행 가능
+
+jobs:
+  check-token-expiry:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check token expiry date
+        id: check
+        run: |
+          # 토큰 만료일 설정 (토큰 생성 시 여기 날짜 업데이트하세요)
+          # 형식: YYYY-MM-DD
+          EXPIRY_DATE="2026-02-27"
+
+          # 현재 날짜
+          CURRENT_DATE=$(date +%Y-%m-%d)
+
+          # 날짜를 초 단위로 변환
+          EXPIRY_TIMESTAMP=$(date -d "$EXPIRY_DATE" +%s 2>/dev/null || date -j -f "%Y-%m-%d" "$EXPIRY_DATE" +%s)
+          CURRENT_TIMESTAMP=$(date -d "$CURRENT_DATE" +%s 2>/dev/null || date -j -f "%Y-%m-%d" "$CURRENT_DATE" +%s)
+
+          # 남은 일수 계산
+          DAYS_LEFT=$(( ($EXPIRY_TIMESTAMP - $CURRENT_TIMESTAMP) / 86400 ))
+
+          echo "days_left=$DAYS_LEFT" >> $GITHUB_OUTPUT
+          echo "expiry_date=$EXPIRY_DATE" >> $GITHUB_OUTPUT
+
+          if [ $DAYS_LEFT -le 30 ]; then
+            echo "should_notify=true" >> $GITHUB_OUTPUT
+          else
+            echo "should_notify=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create issue if token expires soon
+        if: steps.check.outputs.should_notify == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const daysLeft = ${{ steps.check.outputs.days_left }};
+            const expiryDate = '${{ steps.check.outputs.expiry_date }}';
+
+            // 기존 이슈 확인
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'npm-token-expiry'
+            });
+
+            // 이미 열린 이슈가 있으면 업데이트만
+            if (issues.data.length > 0) {
+              const issue = issues.data[0];
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: `⏰ **Update**: NPM token expires in **${daysLeft} days** (${expiryDate})`
+              });
+            } else {
+              // 새 이슈 생성
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `🔑 NPM Token expires in ${daysLeft} days`,
+                labels: ['npm-token-expiry', 'maintenance'],
+                body: `## NPM Token Expiry Warning
+
+⚠️ Your NPM Granular Access Token will expire soon!
+
+- **Expiry Date**: ${expiryDate}
+- **Days Left**: ${daysLeft} days
+
+### Action Required
+
+1. Go to [npmjs.com](https://www.npmjs.com/) → Access Tokens
+2. Generate a new **Granular Access Token**:
+   - **Permissions**: Packages and scopes → Read and write
+   - **Organizations**: Select \`@vercel-env-router\`
+   - **Expiration**: 90 days
+3. Copy the new token
+4. Update GitHub Secret:
+   - Go to [Repository Settings → Secrets](https://github.com/${context.repo.owner}/${context.repo.repo}/settings/secrets/actions)
+   - Update \`NPM_TOKEN\` with the new token
+5. Update the expiry date in [\`.github/workflows/token-expiry-check.yml\`](.github/workflows/token-expiry-check.yml):
+   - Change \`EXPIRY_DATE\` to the new expiry date
+
+### Why is this needed?
+
+NPM Granular Access Tokens have a maximum expiration of 90 days for security reasons. This workflow checks weekly and creates this issue when the token is within 30 days of expiration.
+
+---
+*This issue was automatically created by the Token Expiry Check workflow.*`
+              });
+            }
+
+      - name: Log status
+        run: |
+          echo "Token expires in ${{ steps.check.outputs.days_left }} days (${{ steps.check.outputs.expiry_date }})"
+          if [ "${{ steps.check.outputs.should_notify }}" == "true" ]; then
+            echo "⚠️  Warning: Token expires soon!"
+          else
+            echo "✅ Token is still valid"
+          fi
