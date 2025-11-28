@@ -1,145 +1,145 @@
-# Setup Guide for Development
+# 개발 환경 설정 가이드
 
-This guide helps you set up the project for local development.
+이 가이드는 로컬 개발을 위한 프로젝트 설정을 도와줍니다.
 
-## Prerequisites
+## 사전 요구사항
 
 - Node.js >= 18
 - pnpm >= 8
 
-## Installation
+## 설치
 
-### 1. Enable pnpm
+### 1. pnpm 활성화
 
 ```bash
 corepack enable
 corepack prepare pnpm@8.15.0 --activate
 ```
 
-If you encounter permission issues, install pnpm globally:
+권한 문제가 발생하면 pnpm을 전역으로 설치하세요:
 
 ```bash
 npm install -g pnpm@8.15.0
 ```
 
-### 2. Install Dependencies
+### 2. 의존성 설치
 
 ```bash
 pnpm install
 ```
 
-### 3. Build All Packages
+### 3. 모든 패키지 빌드
 
 ```bash
 pnpm build
 ```
 
-This will build:
+다음 패키지들이 빌드됩니다:
 
 - `@vercel-env-router/core`
 - `@vercel-env-router/cli`
 - `@vercel-env-router/vite`
 
-### 4. Run Tests
+### 4. 테스트 실행
 
 ```bash
 pnpm test
 ```
 
-With coverage:
+커버리지와 함께:
 
 ```bash
 pnpm test:coverage
 ```
 
-### 5. Lint and Format
+### 5. 린트 및 포맷
 
 ```bash
-# Lint
+# 린트
 pnpm lint
 
-# Fix lint issues
+# 린트 이슈 자동 수정
 pnpm lint:fix
 
-# Format code
+# 코드 포맷
 pnpm format
 
-# Check formatting
+# 포맷 확인
 pnpm format:check
 ```
 
-## Development Workflow
+## 개발 워크플로우
 
-### Working on Core Package
+### Core 패키지 작업
 
 ```bash
 cd packages/core
 
-# Watch mode
+# Watch 모드
 pnpm dev
 
-# Run tests
+# 테스트 실행
 pnpm test
 ```
 
-### Working on CLI
+### CLI 작업
 
 ```bash
 cd packages/cli
 
-# Build
+# 빌드
 pnpm build
 
-# Test locally
+# 로컬 테스트
 node dist/index.js init
 ```
 
-### Working on Vite Plugin
+### Vite 플러그인 작업
 
 ```bash
 cd packages/vite-plugin
 
-# Watch mode
+# Watch 모드
 pnpm dev
 ```
 
-### Testing in Examples
+### 예제에서 테스트
 
 ```bash
 cd examples/basic
 
-# Install dependencies (links to local packages)
+# 의존성 설치 (로컬 패키지로 링크됨)
 pnpm install
 
-# Test CLI
+# CLI 테스트
 pnpm vercel-env-router generate
 
-# Test Vite plugin
+# Vite 플러그인 테스트
 pnpm dev
 ```
 
-## Project Structure
+## 프로젝트 구조
 
 ```
 vercel-env-router/
 ├── packages/
-│   ├── core/              # Core library
+│   ├── core/              # 핵심 라이브러리
 │   │   ├── src/
 │   │   ├── tests/
 │   │   └── package.json
-│   ├── cli/               # CLI tool
+│   ├── cli/               # CLI 도구
 │   │   ├── src/
 │   │   ├── tests/
 │   │   └── package.json
-│   └── vite-plugin/       # Vite plugin
+│   └── vite-plugin/       # Vite 플러그인
 │       ├── src/
 │       ├── tests/
 │       └── package.json
-├── examples/              # Example projects
+├── examples/              # 예제 프로젝트
 │   ├── basic/
 │   ├── multi-backend/
 │   └── migration/
-├── docs/                  # Documentation
+├── docs/                  # 문서
 │   ├── guide.md
 │   ├── api.md
 │   ├── configuration.md
@@ -149,73 +149,73 @@ vercel-env-router/
         └── ci.yml         # GitHub Actions CI
 ```
 
-## Common Tasks
+## 일반 작업
 
-### Add New Dependency
+### 새 의존성 추가
 
-For core package:
+core 패키지의 경우:
 
 ```bash
 cd packages/core
 pnpm add zod
 ```
 
-For dev dependency:
+개발 의존성의 경우:
 
 ```bash
 pnpm add -D vitest
 ```
 
-### Create New Test
+### 새 테스트 생성
 
 ```bash
-# Create test file
+# 테스트 파일 생성
 touch packages/core/tests/new-feature.test.ts
 
-# Run specific test
+# 특정 테스트 실행
 pnpm test new-feature
 ```
 
-### Update Documentation
+### 문서 업데이트
 
-Edit files in `docs/` directory and verify in examples.
+`docs/` 디렉토리의 파일을 수정하고 예제에서 확인하세요.
 
-## Troubleshooting
+## 문제 해결
 
-### pnpm not found
+### pnpm을 찾을 수 없음
 
 ```bash
-# Re-enable corepack
+# corepack 재활성화
 corepack enable
 
-# Or install globally
+# 또는 전역 설치
 npm install -g pnpm@8.15.0
 ```
 
-### Build errors
+### 빌드 오류
 
 ```bash
-# Clean and rebuild
+# 클린 및 재빌드
 pnpm clean
 pnpm install
 pnpm build
 ```
 
-### Test failures
+### 테스트 실패
 
 ```bash
-# Run tests with verbose output
+# 상세 출력으로 테스트 실행
 pnpm test --reporter=verbose
 
-# Run specific test file
+# 특정 테스트 파일 실행
 pnpm test generator.test.ts
 ```
 
-## Next Steps
+## 다음 단계
 
-After setup:
+설정 후:
 
-1. Read [Contributing Guidelines](./CONTRIBUTING.md)
-2. Check [Examples](./examples)
-3. Review [API Documentation](./docs/api.md)
-4. Run tests to ensure everything works
+1. [기여 가이드라인](./CONTRIBUTING.md) 읽기
+2. [예제](./examples) 확인
+3. [API 문서](./docs/api.md) 검토
+4. 모든 것이 작동하는지 테스트 실행
